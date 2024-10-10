@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package users;
+option go_package = "request/";
+
+message Person {
+  string name = 1;
+  string email = 2;
+  string date_of_birth = 3;
+  string username = 4;
+  string password = 5;
+}
+
+message LoginRequest {
+  string username = 1;
+  string password = 2;
+}
+
+message Response {
+  string message = 1;
+  Person person = 2;
+}
+
+service UserFeatures {
+  rpc RegisterUser(Person) returns (Response);
+  rpc Login(LoginRequest) returns (Response);
+}
